@@ -21,7 +21,7 @@ function inputNumb(char){
 }
 
 function inputFunc(func){
-    if(!input.match(/[*+/-]/g) && input.match(/[0-9]/g)){
+    if(input.charAt(input.length-1).match(/\d/g)){
         input += func;
     }
     display_input.textContent = input;
