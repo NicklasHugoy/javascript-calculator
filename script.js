@@ -19,7 +19,6 @@ function operate(operator, numb1, numb2){
 }
 
 function compute(){
-    console.log("compute");
     for(i = 0; i < inputArray.length; i++){
         if(inputArray[i] == '*' || inputArray[i] ==  '/'){
             inputArray[i] = operate(inputArray[i], inputArray[i-1], inputArray[i+1]);
@@ -45,10 +44,8 @@ function inputNumb(char){
     
     if(inputArray.length == 0 || isFunctionChar(input.charAt(input.length-1))){
         inputArray.push(char);
-        console.log("push");
     }else{
         inputArray[inputArray.length-1] += char;
-        console.log("input");
     }
     input += char;
     display_input.textContent = input;
@@ -64,6 +61,13 @@ function inputFunc(func){
         inputArray.push(func);
         display_input.textContent = input;
     }  
+}
+
+function clear(){
+    inputArray = [];
+    input = "";
+    display_input.textContent = "";
+    display_output.textContent = "";
 }
 
 function add(numb1, numb2){
@@ -103,3 +107,8 @@ const equal_btn = document.querySelector('.equals');
 equal_btn.addEventListener("click", function(event){
     compute();
 });
+
+const del_btn = document.querySelector('.del');
+del_btn.addEventListener("click", function(event){
+    clear();
+})
