@@ -1,4 +1,3 @@
-let input = "";
 let inputArray = [];
 
 function operate(operator, numb1, numb2){
@@ -42,13 +41,20 @@ function compute(){
 
 function inputNumb(char){
     
-    if(inputArray.length == 0 || isFunctionChar(input.charAt(input.length-1))){
+    if(inputArray.length == 0 || isFunctionChar(inputArray[inputArray.length-1])){
         inputArray.push(char);
     }else{
         inputArray[inputArray.length-1] += char;
     }
-    input += char;
-    display_input.textContent = input;
+    updateDisplay();
+}
+
+function updateDisplay(){
+    let display = "";
+    inputArray.forEach(function(element){
+        display += element;
+    });
+    display_input.textContent = display;
 }
 
 function isFunctionChar(char){
@@ -56,16 +62,14 @@ function isFunctionChar(char){
 }
 
 function inputFunc(func){
-    if(input.charAt(input.length-1).match(/\d/g)){
-        input += func;
+    if(inputArray[inputArray.length-1].match(/\d/g)){
         inputArray.push(func);
-        display_input.textContent = input;
-    }  
+        updateDisplay();
+    }    
 }
 
 function clear(){
     inputArray = [];
-    input = "";
     display_input.textContent = "";
     display_output.textContent = "";
 }
